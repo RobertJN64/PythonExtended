@@ -8,9 +8,9 @@ setup(
     # Needed to actually package something
     packages=['PythonExtended'],
     # Needed for dependencies
-    #install_requires=['pygame'],
+    extras_require=['matplotlib'],
     # *strongly* suggested for sharing
-    version='0.0.1',
+    version='0.0.2',
     # The license can be anything you like
     license='MIT',
     description='A collection of libraries that run on top of existing python libraries. Used to make function easier. Focus on object oriented and functional programming',
