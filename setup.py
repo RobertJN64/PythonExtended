@@ -8,7 +8,7 @@ setup(
     # Needed to actually package something
     packages=['PythonExtended'],
     # Needed for dependencies
-    extras_require=['matplotlib'],
+    extras_require=['matplotlib','pygame'],
     # *strongly* suggested for sharing
     version='0.0.2',
     # The license can be anything you like
