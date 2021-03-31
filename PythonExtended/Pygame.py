@@ -75,13 +75,52 @@ class Button:
             message_display(screen, self.text, self.centerpos, self.textcolor, self.textsize)
 
 
+class ButtonGroup:
+    def __init__(self, buttonList):
+        self.buttonList = buttonList
+
+        #flags
+        self.dontclear = None
+        self.doclear = None
+
+    def process(self):
+        self.dontclear = None
+        self.doclear = None
+        for button in self.buttonList:
+            if button.updated and button.state:
+                self.dontclear = button
+            if button.updated and not button.state:
+                self.doclear = button
+
+        if self.dontclear is not None:
+            for button in self.buttonList:
+                if button != self.dontclear:
+                    if button.state:
+                        button.updated = True
+                        button.state = False
+
+        if self.doclear is not None:
+            if len(self.buttonList) == 2:
+                for button in self.buttonList:
+                    if button != self.doclear:
+                        button.state = True
+                        button.updated = True
+            else:
+                self.doclear.state = True
+                self.doclear.updated = False
+
+
 class ButtonManager:
     def __init__(self):
         self.ButtonList = []
         self.eventList = {}
+        self.ButtonGroups = []
 
     def addButton(self, button):
         self.ButtonList.append(button)
+
+    def addButtonManager(self, buttonGroup):
+        self.ButtonGroups.append(buttonGroup)
 
     def resetEvents(self):
         for self.button in self.ButtonList:
@@ -98,6 +137,10 @@ class ButtonManager:
             loc = pygame.mouse.get_pos()
             for self.button in self.ButtonList:
                 self.button.recieveClick(loc)
+
+    def processButtonGroups(self):
+        for buttonGroup in self.ButtonGroups:
+            buttonGroup.process()
 
     def draw(self, screen):
         for self.button in self.ButtonList:
