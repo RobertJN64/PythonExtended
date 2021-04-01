@@ -10,7 +10,7 @@ setup(
     # Needed for dependencies
     extras_require=['matplotlib','pygame', 'RPi.GPIO'],
     # *strongly* suggested for sharing
-    version='0.0.3',
+    version='0.0.4',
     # The license can be anything you like
     license='MIT',
     description='A collection of libraries that run on top of existing python libraries. Used to make function easier. Focus on object oriented and functional programming',
