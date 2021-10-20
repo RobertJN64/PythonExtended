@@ -123,25 +123,25 @@ class ButtonManager:
         self.ButtonGroups.append(buttonGroup)
 
     def resetEvents(self):
-        for self.button in self.ButtonList:
-            self.button.reset()
+        for button in self.ButtonList:
+            button.reset()
 
     def getEvents(self):
         self.eventList = {}
-        for self.button in self.ButtonList:
-            self.eventList[self.button] = self.button.state
+        for button in self.ButtonList:
+            self.eventList[button] = button.state
         return self.eventList
 
     def recieveEvent(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             loc = pygame.mouse.get_pos()
-            for self.button in self.ButtonList:
-                self.button.recieveClick(loc)
+            for button in self.ButtonList:
+                button.recieveClick(loc)
 
     def processButtonGroups(self):
         for buttonGroup in self.ButtonGroups:
             buttonGroup.process()
 
     def draw(self, screen):
-        for self.button in self.ButtonList:
-            self.button.draw(screen)
+        for button in self.ButtonList:
+            button.draw(screen)
